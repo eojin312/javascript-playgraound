@@ -12,4 +12,5 @@ console.log(arr);
 
 Array.prototype.push.apply(obj, ['baz']);
 
+
 console.log(abj);

@@ -2,12 +2,16 @@
  * 리터럴 객체 생성
  */
 
+var emptyArr = [];
 
-var foo = {
-    name : 'foo',
-    age : 30,
-    gender : 'male'
-};
+emptyArr[0] =100;
+emptyArr[3] = 'eight';
+emptyArr[7] = true
 
-document.write(foo);
-document.write(typeof foo);
+function changeArg(num, obj) {
+    num = 200;
+    obj.value = 200;
+
+    console.log(num);
+    console.log(obj);
+}
