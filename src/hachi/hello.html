@@ -1,13 +1,31 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 </head>
 <body>
-    <script src="hello_javascript.js"></script>
-    <script src="type_of.js"></script>
-    <script src="object.js"></script>
-    <script src="literal.js"></script>
+<div class="app">
+    <h1>{{ message }}</h1>
+</div>
+<div v-if="show">hello Vue.js!</div>
+<div key="id"></div>
+<div v-bind:key="key"></div>
+<div class="app2">
+    <ol>
+        <li v-for="item in list">{{ item }}</li>
+    </ol>
+</div>
+
+<script>
+    var app2 = new Vue({
+        el: '.app2',
+        data: {
+            list: ['사과', '바나나', '딸기']
+        }
+    })
+</script>
 </body>
 </html>
