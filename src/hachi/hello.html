@@ -4,13 +4,24 @@
     <meta charset="UTF-8">
     <title></title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
+    <style>
+        .v-enter-active, .v-leave-active {
+            transition: opacity 1s;
+        }
+        .v-enter, .v-leave-to {
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
 <div class="app">
-    <h1>{{ message }}</h1>
+    <p>{{ message }}</p>
+    <input v-model="message">
+    <button v-on:click="show=!show">변경하기!</button>
+    <transition>
+        <p v-if="show">hello Vue.js!</p>
+    </transition>
 </div>
-<div v-if="show">hello Vue.js!</div>
 <div key="id"></div>
 <div v-bind:key="key"></div>
 <div class="app2">
@@ -20,6 +31,12 @@
 </div>
 
 <script>
+    var app = new Vue({
+        el: '.app',
+        data: {
+            show: true
+        }
+    })
     var app2 = new Vue({
         el: '.app2',
         data: {
