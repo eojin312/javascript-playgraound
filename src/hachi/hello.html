@@ -35,6 +35,15 @@
         el: '.app',
         data: {
             show: true
+        },
+        computed: {
+            computedMessage: function () {
+                return this.message + '!';
+            }
+        },
+        // created 라이프 사이클 훅
+        created: function () {
+            console.log('created');
         }
     })
     var app2 = new Vue({
