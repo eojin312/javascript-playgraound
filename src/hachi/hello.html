@@ -28,6 +28,8 @@
     <ol>
         <li v-for="item in list">{{ item }}</li>
     </ol>
+    <p>{{ list[2] }}</p>
+    <p>{{ list[num] }}</p>
 </div>
 
 <script>
@@ -52,7 +54,8 @@
     var app2 = new Vue({
         el: '.app2',
         data: {
-            list: ['사과', '바나나', '딸기']
+            list: ['사과', '바나나', '딸기'],
+            num: 1
         }
     })
 </script>
