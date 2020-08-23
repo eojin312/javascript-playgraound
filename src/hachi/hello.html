@@ -31,10 +31,12 @@
 </div>
 
 <script>
+    var state = {count: 0}
     var app = new Vue({
         el: '.app',
         data: {
-            show: true
+            show: true,
+            state: state
         },
         computed: {
             computedMessage: function () {
@@ -46,6 +48,7 @@
             console.log('created');
         }
     })
+    state.count++ // state.count 는 리액티브 데이터이다.
     var app2 = new Vue({
         el: '.app2',
         data: {
