@@ -33,6 +33,13 @@
         <circle cx="100" cy="75" v-bind:r="radius" fill="lightpink" />
     </svg>
     <input type="range" min="0" max="100" v-model="radius">
+
+    <div v-if="loaded" key="content-visible">
+        content
+    </div>
+    <div v-else key="content-loading">
+        로딩 중 . . .
+    </div>
 </div>
 <div key="id"></div>
 <div v-bind:key="key"></div>
@@ -43,6 +50,16 @@
     <p>{{ list[2] }}</p>
     <p>{{ list[num] }}</p>
 </div>
+
+<div class="template">
+    <template v-if="ok">
+        <header>
+            타이틀
+        </header>
+        <div>콘텐츠</div>
+    </template>
+</div>
+
 
 <script>
     var state = {count: 0}
@@ -79,6 +96,13 @@
         data: {
             list: ['사과', '바나나', '딸기'],
             num: 1
+        }
+    })
+
+    var template = new Vue({
+        el: '.template',
+        data: {
+            ok: false
         }
     })
 </script>
