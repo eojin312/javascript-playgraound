@@ -16,11 +16,14 @@
 <body>
 <div class="app">
     <p>{{ message }}</p>
-    <input v-model="message">
+    <input :value="message">
     <button v-on:click="show=!show">변경하기!</button>
     <transition>
         <p v-if="show">hello Vue.js!</p>
     </transition>
+    <pre>{{ $data }}</pre>
+    <p>{{ count }} 번 클릭했습니다.</p>
+    <button v-on:click="increment">눌러봐</button>
 </div>
 <div key="id"></div>
 <div v-bind:key="key"></div>
@@ -38,11 +41,21 @@
         el: '.app',
         data: {
             show: true,
-            state: state
+            state: state,
+            scroll: 0,
+            count: 0
+        },
+        mounted: function() {
+            this.scroll = 100 // 요소의 스크롤 양 조절하기
         },
         computed: {
             computedMessage: function () {
                 return this.message + '!';
+            }
+        },
+        methods : {
+            increment: function () {
+                this.count += 1;
             }
         },
         // created 라이프 사이클 훅
