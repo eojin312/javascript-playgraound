@@ -33,7 +33,8 @@
     </div>
     <ul>
         <li v-for="(post, index) in postList" v-bind:key="post.id">
-            # {{ post.id }} {{ post.title}} 작성자:  {{ post.author }} {{ post.category }}
+            # {{ post.id }} {{ post.title}} 작성자: {{ post.author }} {{ post.category }} 좋아요: {{ post.like }}
+            <button v-on:click="doLike(index)">좋아요</button>
             <button v-on:click="doRemove(index)">삭제</button>
         </li>
     </ul>
@@ -81,31 +82,36 @@
                     id: 1,
                     title: '제목1',
                     category: '유머',
-                    author: '하치'
+                    author: '하치',
+                    like: 0
                 },
                 {
                     id: 2,
                     title: '제목2',
                     category: '유머',
-                    author: '하치'
+                    author: '하치',
+                    like: 0
                 },
                 {
                     id: 3,
                     title: '제목3',
                     category: '유머',
-                    author: '초코'
+                    author: '초코',
+                    like: 0
                 },
                 {
                     id: 4,
                     title: '제목4',
                     category: '유머',
-                    author: '후추'
+                    author: '후추',
+                    like: 0
                 },
                 {
                     id: 5,
                     title: '제목5',
                     category: '유머',
-                    author: '쩡'
+                    author: '쩡',
+                    like: 0
                 }
             ]
         },
@@ -134,10 +140,16 @@
             },
             doRemove: function (index) {
                 this.postList.splice(index, 1)
+            },
+            doLike: function (index) {
+                this.postList[index].like += 1
             }
         },
         // created 라이프 사이클 훅
         created: function () {
+            this.postList.forEach(function (post) {
+                this.$set(post, 'active', false)
+            });
             console.log('created');
         }
     })
