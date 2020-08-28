@@ -24,18 +24,23 @@
     <pre>{{ $data }}</pre>
     <p>{{ count }} 번 클릭했습니다.</p>
     <button v-on:click="increment">눌러봐</button>
-    <!--클래스와 스타일 데이터 바인딩-->
-    <p v-bind:class="{ child:isChild, 'is-active':isActive }">Text</p>
-    <p v-bind:class="{ color:textColor, backgroundColor:bgColor }">Text</p>
-    <p v-bind:class="classObject">Text</p>
-    <p v-bind:class="styleObject">Text</p>
+    <br />
+    <div>
+        작성자 : <input v-model="author">
+        제목 : <input v-model="title">
+        카테고리 : <input v-model="category">
+        <button v-on:click="doAdd">글추가하기</button>
+    </div>
+    <ul>
+        <li v-for="(post, index) in postList" v-bind:key="post.id">
+            # {{ post.id }} {{ post.title}} 작성자:  {{ post.author }} {{ post.category }}
+            <button v-on:click="doRemove(index)">삭제</button>
+        </li>
+    </ul>
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
         <circle cx="100" cy="75" v-bind:r="radius" fill="lightpink" />
     </svg>
     <input type="range" min="0" max="100" v-model="radius">
-
-    <div v-if="loaded" key="content-visible">
-        content
     </div>
     <div v-else key="content-loading">
         로딩 중 . . .
@@ -70,7 +75,39 @@
             state: state,
             scroll: 0,
             count: 0,
-            radius: 50
+            radius: 50,
+            postList: [
+                {
+                    id: 1,
+                    title: '제목1',
+                    category: '유머',
+                    author: '하치'
+                },
+                {
+                    id: 2,
+                    title: '제목2',
+                    category: '유머',
+                    author: '하치'
+                },
+                {
+                    id: 3,
+                    title: '제목3',
+                    category: '유머',
+                    author: '초코'
+                },
+                {
+                    id: 4,
+                    title: '제목4',
+                    category: '유머',
+                    author: '후추'
+                },
+                {
+                    id: 5,
+                    title: '제목5',
+                    category: '유머',
+                    author: '쩡'
+                }
+            ]
         },
         mounted: function() {
             this.scroll = 100 // 요소의 스크롤 양 조절하기
@@ -83,6 +120,20 @@
         methods : {
             increment: function () {
                 this.count += 1;
+            },
+            doAdd: function () {
+                var max = this.postList.reduce(function (a, b) {
+                    return a > b.id ? a : b.id
+                }, 0)
+                this.postList.push({
+                    id: max + 1,
+                    author: this.author,
+                    category: this.category,
+                    title: this.title
+                })
+            },
+            doRemove: function (index) {
+                this.postList.splice(index, 1)
             }
         },
         // created 라이프 사이클 훅
