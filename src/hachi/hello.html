@@ -47,6 +47,9 @@
     <div v-else key="content-loading">
         로딩 중 . . .
     </div>
+    <button v-on:click="handleClick">Count Up</button>
+    <button v-on:click="show=!show">표시/비표시</button>
+    <span ref="count" v-if="show">0</span>
 </div>
 <div key="id"></div>
 <div v-bind:key="key"></div>
@@ -132,26 +135,32 @@
             },
             doAdd: function () {
                 var max = this.postList.reduce(function (a, b) {
-                    return a > b.id ? a : b.id
+                    return a > b.id ? a : b.id;
                 }, 0)
                 this.postList.push({
                     id: max + 1,
                     author: this.author,
                     category: this.category,
                     title: this.title
-                })
+                });
             },
             doRemove: function (index) {
-                this.postList.splice(index, 1)
+                this.postList.splice(index, 1);
             },
             doLike: function (index) {
-                this.postList[index].like += 1
+                this.postList[index].like += 1;
+            },
+            handleClick: function () {
+                var count = this.$refs.count
+                if (count) {
+                    count.innerText = parseInt(count.innerText, 10) + 1;
+                }
             }
         },
         // created 라이프 사이클 훅
         created: function () {
             this.postList.forEach(function (post) {
-                this.$set(post, 'active', false)
+                this.$set(post, 'active', false);
             });
             console.log('created');
         }
@@ -163,14 +172,14 @@
             list: ['사과', '바나나', '딸기'],
             num: 1
         }
-    })
+    });
 
     var template = new Vue({
         el: '.template',
         data: {
             ok: false
         }
-    })
+    });
 </script>
 </body>
 </html>
