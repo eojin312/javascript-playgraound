@@ -17,6 +17,7 @@
 <div class="app">
     <p>{{ message }}</p>
     <input :value="message">
+    <p ref="hello">Hello</p>
     <button v-on:click="show=!show">변경하기!</button>
     <transition>
         <p v-if="show">hello Vue.js!</p>
@@ -118,6 +119,7 @@
         mounted: function() {
             this.scroll = 100 // 요소의 스크롤 양 조절하기
             console.log(this.$el) // dom 직접 참조하는 el 속성
+            console.log(this.$refs.hello) //p 요소를 dom 처럼 다룰 수 있음
         },
         computed: {
             computedMessage: function () {
