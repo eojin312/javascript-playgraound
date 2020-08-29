@@ -117,6 +117,7 @@
         },
         mounted: function() {
             this.scroll = 100 // 요소의 스크롤 양 조절하기
+            console.log(this.$el) // dom 직접 참조하는 el 속성
         },
         computed: {
             computedMessage: function () {
